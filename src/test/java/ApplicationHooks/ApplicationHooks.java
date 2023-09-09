@@ -31,19 +31,13 @@ public class ApplicationHooks {
 	public void launchBrowser() {
 		String browserName = prop.getProperty("browser");
 		driverFactory = new DriverFactory();
-		driverFactory.init_driver(browserName);
+		driver = driverFactory.init_driver(browserName);
 	}
 	
 	@After(order = 0)
 	public void quitBrowser(){
 		System.out.println("Quit browser");
-		try {
-			driver.quit();	
-		} catch(NullPointerException e) {
-			e.printStackTrace();
-		}
-//		
-//	driver.quit();
+	driver.quit();
 	}
 	
 	@After(order = 1)
